@@ -1,0 +1,165 @@
+{extend name="public/template" /}
+{block name="title"}Aion Go{/block}
+{block name="css"}
+<style>
+ .sell-font{
+    font-size:10px;background-color:#e3e3e3;margin-top:10px;color:#999
+ }
+</style>
+<link rel="shortcut icon" href="favicon.ico">
+<link href="/favicon.ico" rel="SHORTCUT ICON" type="/image/ico">
+
+<!-- Global styles END -->
+
+<!-- Page level plugin styles START -->
+<link href="/static/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+<link href="/static/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
+<link href="/static/plugins/bxslider/jquery.bxslider.css" rel="stylesheet">
+<link rel="stylesheet" href="/static/plugins/layerslider/css/layerslider.css" type="text/css">
+<!-- Page level plugin styles END -->
+
+<!-- Theme styles START -->
+<link href="/static/css/style-metronic.css" rel="stylesheet" type="text/css">
+<link href="/static/css/style.css" rel="stylesheet" type="text/css">
+<link href="/static/css/style-responsive.css" rel="stylesheet" type="text/css">
+<link href="/static/css/custom.css" rel="stylesheet" type="text/css">
+<!-- Theme styles END -->
+{/block}
+{block name="body"}
+
+    <div class="main">
+      <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="{:url('index/index')}">首页</a></li>
+            <li><a href="">用户</a></li>
+            <li class="active">帐号出售</li>
+        </ul>
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40" >
+          <!-- BEGIN CONTENT -->
+          <div class="col-md-11col-sm-9 col-md-offset-1 ">
+            <div class="content-form-page">
+              <div class="row">
+                <div class="col-md-7 col-sm-7">
+                  <form class="form-horizontal" role="form" id="addForm">
+                    <fieldset>
+                      <legend style="font-size:16px;">永恒之塔</legend>
+                      <div class="form-group">
+                        <label for="firstname" class="col-lg-4 control-label">商品标题 <span class="require">*</span></label>
+                        <div class="col-lg-8">
+                          <input type="text" name="goods_title" class="form-control" id="firstname">
+                          <p class="sell-font">自动生成标题格式：<em style="color:#e6400c">【角色职业+绑定信息+等级+卖家填写的标题】</em></p>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="lastname" class="col-lg-4 control-label">所属种族 <span class="require">*</span></label>
+                        <div class="col-lg-8">
+                              <select class="form-control input-sm" name="goods_type">
+                                <option value="">请选择</option>
+                                <option value="1">天族</option>
+                                <option value="2">魔族</option>
+                              </select>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="email" class="col-lg-4 control-label">出售价格 <span class="require">*</span></label>
+                        <div class="col-lg-8">
+                          <input type="text" name="goods_price" class="form-control" id="email">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="email" class="col-lg-4 control-label">角色等级 <span class="require">*</span></label>
+                        <div class="col-lg-8">
+                          <input type="text" name="goods_lieve" class="form-control" id="email">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="lastname" class="col-lg-4 control-label">角色职业 <span class="require">*</span></label>
+                        <div class="col-lg-8">
+                              <select class="form-control input-sm" name="goods_job">
+                                  <option value="">请选择</option>
+                                  <option value="1">守护</option>
+                                  <option value="2">剑星</option>
+                                  <option value="3">杀星</option>
+                                  <option value="4">弓星</option>
+                                  <option value="5">护法</option>
+                                  <option value="6">治愈</option>
+                                  <option value="7">魔道</option>
+                                  <option value="8">精灵</option>
+                                  <option value="9">吟游</option>
+                                  <option value="10">枪炮</option>
+                                  <option value="11">拖拉机</option>
+                              </select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="email" class="col-lg-4 control-label">角色性别 <span class="require">*</span></label>
+                        <div class="col-lg-8">
+                          <select class="form-control input-sm" name="goods_sex">
+                            <option value="1">请选择</option>
+                            <option value="1">男</option>
+                            <option value="2">女</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="email" class="col-lg-4 control-label">游戏角色名 <span class="require">*</span></label>
+                        <div class="col-lg-8">
+                          <input type="text" class="form-control" name="nick_name">
+                        </div>
+                      </div>
+
+                    </fieldset>
+
+                    <div class="row">
+                      <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-20">
+                        <button type="button" class="btn btn-primary submitAdd">下一步</button>
+                        <a href="{:url('index/index')}"><button type="button" class="btn btn-default">取消</button></a>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="col-md-4 col-sm-4 pull-right">
+                  <div class="form-info">
+                    <h2><em>Important</em> Information</h2>
+                    <p>请勿向他人透露你的帐号和密码</p>
+                    <p>您可以点击此处注册自己的帐号</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+      </div>
+    </div>
+
+
+
+        {/block}
+        {block name="js"}
+        <script>
+        $(".submitAdd").click(function(){
+            var data = $("#addForm").serialize();    
+             $.ajax({
+                  type:'post', 
+                  url:"{:url('user/sell_accounts')}",
+                  cache: false,
+                  data:data, 
+                  dataType:'json',
+                  success:function(data){     
+                     if(data.code==1){
+                          window.location.href="{:url('user/game_user')}";
+                      }else{
+                        alert(data.msg);
+                      }
+                  }
+             })
+            
+          })
+        </script>
+        {/block}
+    <!-- END BODY -->
+</html>

@@ -78,4 +78,5 @@ return [
         '__STATIC__' => '/static',
         '__JS__'     => '/static/javascript',
     ],
+
 ];

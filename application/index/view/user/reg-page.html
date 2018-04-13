@@ -36,32 +36,32 @@
             <div class="content-form-page">
               <div class="row">
                 <div class="col-md-7 col-sm-7">
-                  <form class="form-horizontal" role="form">
+                  <form class="form-horizontal" role="form" id="addForm">
                     <fieldset>
                       <legend style="font-size:16px;">填写您的个人信息</legend>
                       <div class="form-group">
                         <label for="firstname" class="col-lg-4 control-label">昵称 <span class="require">*</span></label>
                         <div class="col-lg-8">
-                          <input type="text" class="form-control" id="firstname">
+                          <input type="text" class="form-control" name="nick_name">
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="lastname" class="col-lg-4 control-label">帐号 <span class="require">*</span></label>
                         <div class="col-lg-8">
-                          <input type="text" class="form-control" id="lastname">
+                          <input type="text" class="form-control" name="user">
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="email" class="col-lg-4 control-label">密码 <span class="require">*</span></label>
                         <div class="col-lg-8">
-                          <input type="text" class="form-control" id="email">
+                          <input type="password" class="form-control" name="pwd">
                         </div>
                       </div>
                     </fieldset>
 
                     <div class="row">
                       <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-20">
-                        <button type="submit" class="btn btn-primary">确认注册</button>
+                        <button type="button" class="btn btn-primary submitAdd">确认注册</button>
                         <a href="{:url('index/index')}"><button type="button" class="btn btn-default">Cancel</button></a>
                       </div>
                     </div>
@@ -88,11 +88,23 @@
         {/block}
         {block name="js"}
         <script>
-          $('.hover-count').click(function(){
-               $id=1;
-              $.post("{:url('index/view_goods')}",{id:$id},function(){
-
-              })
+          $(".submitAdd").click(function(){
+            var data = $("#addForm").serialize();    
+             $.ajax({
+                  type:'post', 
+                  url:"{:url('user/register')}",
+                  cache: false,
+                  data:data, 
+                  dataType:'json',
+                  success:function(data){     
+                     if(data.code==1){
+                          window.location.href="{:url('index/index')}";
+                      }else{
+                        alert(data.msg);
+                      }
+                  }
+             })
+            
           })
         </script>
         {/block}

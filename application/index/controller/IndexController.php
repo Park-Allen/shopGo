@@ -25,4 +25,10 @@ class IndexController extends Controller
         return json(['code' => 1]);
     }
 
+    public function login_out()
+    {
+        session('UserInfo', null);
+        $this->redirect("index/index");
+    }
+
 }

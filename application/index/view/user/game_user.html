@@ -2,9 +2,9 @@
 {block name="title"}Aion Go{/block}
 {block name="css"}
 <style>
- .sell-font{
-    font-size:10px;background-color:#e3e3e3;margin-top:10px;color:#999
- }
+.sell-font{
+  font-size:10px;background-color:#e3e3e3;margin-top:10px;color:#999
+}
 </style>
 <link rel="shortcut icon" href="favicon.ico">
 <link href="/favicon.ico" rel="SHORTCUT ICON" type="/image/ico">
@@ -27,8 +27,8 @@
 {/block}
 {block name="body"}
 
-    <div class="main">
-      <div class="container">
+<div class="main">
+    <div class="container">
         <ul class="breadcrumb">
             <li><a href="{:url('index/index')}">首页</a></li>
             <li><a href="">用户</a></li>
@@ -37,147 +37,146 @@
         <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40" >
           <!-- BEGIN CONTENT -->
-          <div class="col-md-11col-sm-9 col-md-offset-1 ">
-            <div class="content-form-page">
-              <div class="row">
-                <div class="col-md-7 col-sm-7">
-                  <form class="form-horizontal" role="form" id="addForm">
-                    <fieldset>
-                      <legend style="font-size:16px;">角色信息</legend>
-                      <div class="form-group">
-                        <label for="firstname" class="col-lg-4 control-label">主武器 <span class="require">*</span></label>
-                        <div class="col-lg-8">
-                          <input type="text" class="form-control" name="fist_arms">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="firstname" class="col-lg-4 control-label">副武器 <span class="require">*</span></label>
-                        <div class="col-lg-8">
-                          <input type="text" class="form-control" name="last_arms">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="firstname" class="col-lg-4 control-label">上衣 <span class="require">*</span></label>
-                        <div class="col-lg-8">
-                          <input type="text" class="form-control" name="Jacket">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="firstname" class="col-lg-4 control-label">下衣 <span class="require">*</span></label>
-                        <div class="col-lg-8">
-                          <input type="text" class="form-control" name="pants">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="firstname" class="col-lg-4 control-label">手套 <span class="require">*</span></label>
-                        <div class="col-lg-8">
-                          <input type="text" class="form-control" name="glove">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="firstname" class="col-lg-4 control-label">护肩 <span class="require">*</span></label>
-                        <div class="col-lg-8">
-                          <input type="text" class="form-control" name="Armor">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="firstname" class="col-lg-4 control-label">鞋子 <span class="require">*</span></label>
-                        <div class="col-lg-8">
-                          <input type="text" class="form-control" name="shoes">
-                        </div>
-                      </div>
-                      <legend class="col-md-offset-1" style="font-size:16px;">饰品栏目</legend>
-                      <hr>
-                      <div class="form-group">
-                        <label for="firstname" class="col-lg-4 control-label">翅膀 <span class="require">*</span></label>
-                        <div class="col-lg-8">
-                          <input type="text" class="form-control" name="wing">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="firstname" class="col-lg-4 control-label">项链 <span class="require">*</span></label>
-                        <div class="col-lg-8">
-                          <input type="text" class="form-control" name="necklace">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="firstname" class="col-lg-4 control-label">戒指 <span class="require">*</span></label>
-                        <div class="col-lg-8">
-                          <input type="text" class="form-control" name="ring">
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label for="firstname" class="col-lg-4 control-label">羽毛 <span class="require">*</span></label>
-                        <div class="col-lg-8">
-                          <input type="text" class="form-control" name="feather">
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label for="firstname" class="col-lg-4 control-label">手镯 <span class="require">*</span></label>
-                        <div class="col-lg-8">
-                          <input type="text" class="form-control" name="bracelet">
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                            <label for="firstname" class="col-lg-4 control-label">其他备注信息 <span class="require">*</span></label>
-                            <div class="col-lg-8">
-                                <textarea class="form-control" rows="3"></textarea>
-                            </div>
-                       </div>
-
-                    </fieldset>
-
+            <div class="col-md-11col-sm-9 col-md-offset-1 ">
+                <div class="content-form-page">
                     <div class="row">
-                      <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-20">
-                        <button type="button" class="btn btn-primary submitAdd">下一步</button>
-                        <a href="{:url('index/index')}"><button type="button" class="btn btn-default">取消</button></a>
-                      </div>
+                        <div class="col-md-7 col-sm-7">
+                            <form class="form-horizontal" role="form" id="addForm">
+                                <fieldset>
+                                    <legend style="font-size:16px;">角色信息</legend>
+                                    <div class="form-group">
+                                        <label for="firstname" class="col-lg-4 control-label">主武器 <span class="require">*</span></label>
+                                        <div class="col-lg-8">
+                                          <input type="text" class="form-control" name="fist_arms">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="firstname" class="col-lg-4 control-label">副武器 <span class="require">*</span></label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" name="last_arms">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="firstname" class="col-lg-4 control-label">上衣 <span class="require">*</span></label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" name="jacket">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="firstname" class="col-lg-4 control-label">下衣 <span class="require">*</span></label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" name="pants">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="firstname" class="col-lg-4 control-label">手套 <span class="require">*</span></label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" name="glove">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="firstname" class="col-lg-4 control-label">护肩 <span class="require">*</span></label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" name="armor">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="firstname" class="col-lg-4 control-label">鞋子 <span class="require">*</span></label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" name="shoes">
+                                        </div>
+                                    </div>
+                                    <legend class="col-md-offset-1" style="font-size:16px;">饰品栏目</legend>
+                                    <hr>
+                                    <div class="form-group">
+                                        <label for="firstname" class="col-lg-4 control-label">翅膀 <span class="require">*</span></label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" name="wing">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="firstname" class="col-lg-4 control-label">项链 <span class="require">*</span></label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" name="necklace">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="firstname" class="col-lg-4 control-label">戒指 <span class="require">*</span></label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" name="ring">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="firstname" class="col-lg-4 control-label">羽毛 <span class="require">*</span></label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" name="feather">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="firstname" class="col-lg-4 control-label">手镯 <span class="require">*</span></label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" name="bracelet">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="firstname" class="col-lg-4 control-label">其他备注信息 <span class="require">*</span></label>
+                                        <div class="col-lg-8">
+                                            <textarea name="others" class="form-control" rows="3"></textarea>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-20">
+                                        <button type="button" class="btn btn-primary submitAdd">下一步</button>
+                                        <a href="{:url('index/index')}"><button type="button" class="btn btn-default">取消</button></a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-4 col-sm-4 pull-right">
+                            <div class="form-info">
+                                <h2><em>Important</em> Information</h2>
+                                <p>请勿向他人透露你的帐号和密码</p>
+                                <p>您可以点击此处注册自己的帐号</p>
+                            </div>
+                        </div>
                     </div>
-                  </form>
                 </div>
-                <div class="col-md-4 col-sm-4 pull-right">
-                  <div class="form-info">
-                    <h2><em>Important</em> Information</h2>
-                    <p>请勿向他人透露你的帐号和密码</p>
-                    <p>您可以点击此处注册自己的帐号</p>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
           <!-- END CONTENT -->
         </div>
         <!-- END SIDEBAR & CONTENT -->
-      </div>
     </div>
+</div>
 
 
 
-        {/block}
-        {block name="js"}
-        <script>
-          $(".submitAdd").click(function(){
-              var data = $("#addForm").serialize();    
-               $.ajax({
-                    type:'post', 
-                    url:"{:url('user/game_user')}",
-                    cache: false,
-                    data:data, 
-                    dataType:'json',
-                    success:function(data){     
-                       if(data.code==1){
-                            window.location.href="{:url('user/game_img')}";
-                        }else{
-                          alert(data.msg);
-                        }
-                    }
-               })
-              
-            })
-        </script>
-        {/block}
-    <!-- END BODY -->
+{/block}
+{block name="js"}
+<script>
+  $(".submitAdd").click(function(){
+      var data = $("#addForm").serialize();    
+       $.ajax({
+          type:'post', 
+          url:"{:url('user/game_user')}",
+          cache: false,
+          data:data, 
+          dataType:'json',
+          success:function(data){     
+               if(data.code==1){
+          window.location.href="{:url('user/game_img')}";
+        }else{
+          alert(data.msg);
+        }
+          }
+       })
+        
+  })
+</script>
+{/block}
+<!-- END BODY -->
 </html>

@@ -25,6 +25,7 @@
 <!-- Head END -->
 
 <body>
+ 
   <!-- BEGIN 顶部TOP-->
   <div class="pre-header">
       <div class="container">
@@ -50,9 +51,15 @@
               <!-- BEGIN TOP BAR MENU -->
               <div class="col-md-6 col-sm-6 additional-nav">
                   <ul class="list-unstyled list-inline pull-right">
-                      <li><i class="fa fa-user"></i><a href="#">我的 Aion</a></li>
-                      <li><a href="{:url('user/sell_accounts')}">我要卖号</a></li>
-                      <li><a href="{:url('user/doLogin')}">登陆</a></li>
+                    <li><i class="fa fa-user"></i><a href="#">我的 Aion</a></li>
+                    <li><a href="{:url('user/sell_accounts')}">我要卖号</a></li>
+                    {if condition="($Think.session.UserInfo)"}
+                        <li><a href="{:url('index/login_out')}">退出</a></li>
+                    {else/}
+                        <li><a href="{:url('user/login')}">登陆</a></li>
+                    {/if}
+                   
+                    
                   </ul>
               </div>
               <!-- END TOP BAR MENU -->
@@ -226,6 +233,12 @@
           Index.initLayerSlider();
           App.initTouchspin();
       });
+    function total(){
+
+    }
+    function total_tmp(){
+
+    }
   </script>
   <!-- END PAGE LEVEL JAVASCRIPTS -->
   {block name="js"}{/block}

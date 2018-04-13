@@ -5,8 +5,8 @@
  .sell-font{
     font-size:10px;background-color:#e3e3e3;margin-top:10px;color:#999
  }
-
-
+.mg_bt20{margin-bottom: 20px;}
+.hide{display: none;}
 </style>
 <link rel="shortcut icon" href="favicon.ico">
 <link href="/favicon.ico" rel="SHORTCUT ICON" type="/image/ico">
@@ -27,8 +27,6 @@
 <link href="/static/css/custom.css" rel="stylesheet" type="text/css">
 <!-- Theme styles END -->
 
-<link href="/static/imgUp/css/common.css" rel="stylesheet" type="text/css">
-<link href="/static/imgUp/css/index.css" rel="stylesheet" type="text/css">
 {/block}
 {block name="body"}
 
@@ -45,29 +43,15 @@
             <div class="content-form-page">
               <div class="row">
                 <div class="col-md-7 col-sm-7">
-                  <form class="form-horizontal" role="form">
+                  <form class="form-horizontal" role="form" enctype="multipart/form-data" method="post" action="{:url('user/uploads')}">
                     <fieldset>
                       <legend style="font-size:16px;">永恒之塔</legend>
-
-                            <div class="col-md-12 col-xs-12">
-                              <p class="sell-font">最多上传5张图片</p>
-                                  <section class="z_photo img-section">
-                                      <div class="upimg-div clear" style="height:100%;" >
-                                            <section class="z_file fl">
-                       		               	 	<img  style="width:160px;height:140px;" class="col-md-1 col-xs-1 add-img" src="/static/imgUp/a11.png" alt="">
-                       		               	 	<input type="file" name="file" id="file" class="file" value="" accept="image/jpg,image/jpeg,image/png,image/bmp" multiple />
-                       		               	 </section>
-                                       </div>
-                                   </section>
-                          		</div>
-                      <aside class="mask works-mask">
-                          <div class="mask-content">
-                            <p class="del-p">您确定要删除作品图片吗？</p>
-                            <p class="check-p"><span class="del-com wsdel-ok">确定</span><span class="wsdel-no">取消</span></p>
-                          </div>
-                      </aside>
-                    </fieldset>
-
+                        <div  class="col-md-12 col-xs-12 img_box">
+                            
+                        </div>  
+                        <div class="col-md-12 col-xs-12">
+                            <input type="file"  class="upfile"  name="image[]" multiple="true">    
+                      	</div>
                     <div class="row">
                       <div class="col-lg-8 col-md-offset-4 padding-left-20 padding-top-20">
                         <button type="submit" class="btn btn-primary">确认提交</button>
@@ -91,13 +75,33 @@
         <!-- END SIDEBAR & CONTENT -->
       </div>
     </div>
-
-
-
         {/block}
         {block name="js"}
-        <script src="/static/imgUp/js/imgUp.js"></script>
+        <script type="text/javascript">
+            $('.upfile').change(function(){
+                var imgUrl = getObjectURL(this.files[0]) ;
+                $img_tmp=get_img_tmp();
+                $img_tmp=$img_tmp.replace(/{img}/g,imgUrl);
+                $('.img_box').append($img_tmp);
 
+            })
+               
+            function getObjectURL(file){
+                var url = null ;
+                if (window.createObjectURL!=undefined) { // basic
+                    url = window.createObjectURL(file);
+                }else if (window.URL!=undefined) {
+                    url = window.URL.createObjectURL(file) ;
+                }else{
+                    url = window.webkitURL.createObjectURL(file) ;
+                }
+              return url; 
+            }
+
+            function get_img_tmp(){
+                return '<img src="{img}" class="col-md-3 mg_bt20">';   
+            }
+        </script>
         {/block}
     <!-- END BODY -->
 </html>

@@ -22,9 +22,30 @@
 {/block}
 {block name="body"}
 
+{if condition="($Think.session.UserInfo)"}
+<div class="main">
+    <div class="container">
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+            <!-- BEGIN CONTENT -->
+            <div class="col-md-12 col-sm-12">
+                <div class="content-page page-404">
+                    <div class="number" style="font-size: 80px;">
+                        你 已 经 登 陆
+                    </div>
+                    <div class="details">
 
-    <div class="main">
-      <div class="container">
+                    </div>
+                </div>
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+    </div>
+</div>
+{else/}
+<div class="main">
+    <div class="container">
         <ul class="breadcrumb">
             <li><a href="index.html">Home</a></li>
             <li><a href="">Store</a></li>
@@ -32,68 +53,82 @@
         </ul>
         <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40" style="margin:0,auto;padding:0,auto">
-          <!-- BEGIN CONTENT -->
-          <div class="col-md-10 col-sm-9 col-md-offset-1">
-            <h1>登 陆</h1>
-            <div class="content-form-page">
-              <div class="row">
-                <div class="col-md-7 col-sm-7">
-                  <form class="form-horizontal form-without-legend" role="form">
-                    <div class="form-group">
-                      <label for="email" class="col-lg-4 control-label">帐号 <span class="require">*</span></label>
-                      <div class="col-lg-8">
-                        <input type="text" class="form-control" id="email">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="password" class="col-lg-4 control-label">密码 <span class="require">*</span></label>
-                      <div class="col-lg-8">
-                        <input type="text" class="form-control" id="password">
-                      </div>
-                    </div>
+            <!-- BEGIN CONTENT -->
+            <div class="col-md-10 col-sm-9 col-md-offset-1">
+                <h1>登 陆</h1>
+                <div class="content-form-page">
                     <div class="row">
-                      <div class="col-lg-8 col-md-offset-4 padding-left-0">
-                        <a href="forgotton-password.html">忘记密码Forget Password?</a>
-                      </div>
+                        <div class="col-md-7 col-sm-7">
+                            <form class="form-horizontal form-without-legend" role="form" id="addForm">
+                                <div class="form-group">
+                                    <label for="email" class="col-lg-4 control-label">帐号 <span class="require">*</span></label>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" name="user">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="col-lg-4 control-label">密码 <span class="require">*</span></label>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" name="pwd">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-offset-4 padding-left-0">
+                                        <a href="forgotton-password.html">忘记密码Forget Password?</a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-20">
+                                        <button type="button" class="btn btn-primary submitAdd">登陆</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-10 padding-right-30">
+                                        <hr>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-4 col-sm-4 pull-right">
+                            <div class="form-info">
+                                <h2><em>Important</em> 消息</h2>
+                                <p>请勿向他人透露你的帐号和密码</p>
+                                <p>您可以点击此处注册自己的帐号</p>
+                                <a href="{:url('user/register')}"> <button type="button" class="btn btn-default">注册帐号</button></a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="row">
-                      <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-20">
-                        <button type="submit" class="btn btn-primary">Login</button>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-10 padding-right-30">
-                        <hr>
-                      </div>
-                    </div>
-                  </form>
                 </div>
-                <div class="col-md-4 col-sm-4 pull-right">
-                  <div class="form-info">
-                    <h2><em>Important</em> 消息</h2>
-                    <p>请勿向他人透露你的帐号和密码</p>
-                      <p>您可以点击此处注册自己的帐号</p>
-                  <a href="{:url('user/register')}"> <button type="button" class="btn btn-default">注册帐号</button></a>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
-          <!-- END CONTENT -->
+            <!-- END CONTENT -->
         </div>
         <!-- END SIDEBAR & CONTENT -->
-      </div>
     </div>
+</div>
+{/if}
+
 
     {/block}
     {block name="js"}
     <script>
-      $('.hover-count').click(function(){
-           $id=1;
-          $.post("{:url('index/view_goods')}",{id:$id},function(){
-
+       $(".submitAdd").click(function(){
+            var data = $("#addForm").serialize();    
+             $.ajax({
+                  type:'post', 
+                  url:"{:url('user/doLogin')}",
+                  cache: false,
+                  data:data, 
+                  dataType:'json',
+                  success:function(data){     
+                     if(data.code==1){
+                          window.location.href="{:url('index/index')}";
+                      }else{
+                        alert(data.msg);
+                      }
+                  }
+             })
+            
           })
-      })
     </script>
     {/block}
 <!-- END BODY -->

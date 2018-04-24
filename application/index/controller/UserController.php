@@ -1,7 +1,9 @@
 <?php
 namespace app\index\controller;
 
+use app\index\model\Equipment;
 use app\index\model\Goods;
+use app\index\model\Img;
 use app\index\model\User;
 use think\Controller;
 
@@ -83,41 +85,56 @@ class UserController extends Base
             }
             $goods = new Goods;
             $goods->allowField(true)->save($post);
-            return json(['code' => 1, 'data' => $post]);
+
+            return json(['code' => 1, 'data' => '', 'goods_id' => $goods->id]);
         }
-        return $this->fetch('sell-account');
+        return $this->fetch('sell_accounts');
     }
 
-    public function game_user()
+    public function user_equipment()
     {
         if (request()->isPost()) {
-            $post = input('post.');
-            return json(['code' => 1, 'data' => $post]);
+            $post           = input('post.');
+            $user_equipment = Equipment::get($post['goods_id']);
+            if (!$user_equipment) {
+                $user_equipment = new Equipment();
+                $user_equipment->allowField(true)->save($post);
+            }
+            return json(['code' => 1, 'data' => '', 'goods_id' => $post['goods_id']]);
         }
         return $this->fetch();
     }
 
     public function game_img()
     {
+        if (request()->isPost()) {
+            $img = Img::get(['goods_id' => input('goods_id')]);
 
+            if (!$img) {
+                $files = request()->file('image');
+                print_r($files);
+                exit;
+                if ($files != "") {
+                    foreach ($files as $file) {
+                        // 移动到框架应用根目录/public/uploads/ 目录下
+                        $info = $file->move($_SERVER['DOCUMENT_ROOT'] . '/' . 'uploads');
+                        if ($info) {
+                            Img::create(['goods_img' => $info->getSaveName(), 'goods_id' => input('goods_id')]);
+                        } else {
+                            // 上传失败获取错误信息
+                            return false;
+                        }
+                    }
+                }
+            }
+            //  $this->redirect('index/product_list');
+        }
         return $this->fetch();
     }
 
-    public function uploads()
+    public function uploads($files)
     {
-        // 获取表单上传文件
-        $files = request()->file('image');
-        foreach ($files as $file) {
-            // 移动到框架应用根目录/public/uploads/ 目录下
-            $info = $file->move($_SERVER['DOCUMENT_ROOT'] . '/' . 'uploads');
-            if ($info) {
-                // 输出 42a79759f284b767dfcb2a0197904287.jpg
-                echo $info->getFilename();
-            } else {
-                // 上传失败获取错误信息
-                echo $file->getError();
-            }
-        }
+
     }
 
 }

@@ -42,6 +42,7 @@
                     <div class="row">
                         <div class="col-md-7 col-sm-7">
                             <form class="form-horizontal" role="form" id="addForm">
+                                <input type="hidden" name="goods_id" value="{$Think.get.id?:''}">
                                 <fieldset>
                                     <legend style="font-size:16px;">角色信息</legend>
                                     <div class="form-group">
@@ -161,18 +162,18 @@
   $(".submitAdd").click(function(){
       var data = $("#addForm").serialize();    
        $.ajax({
-          type:'post', 
-          url:"{:url('user/game_user')}",
-          cache: false,
-          data:data, 
-          dataType:'json',
-          success:function(data){     
-               if(data.code==1){
-          window.location.href="{:url('user/game_img')}";
-        }else{
-          alert(data.msg);
-        }
-          }
+        type:'post', 
+        url:"{:url('user/user_equipment')}",
+        cache: false,
+        data:data, 
+        dataType:'json',
+        success:function(data){     
+            if(data.code==1){
+                        window.location.href="{:url('user/game_img')}?id="+data.goods_id;
+                }else{
+                  alert(data.msg);
+                }
+            }
        })
         
   })

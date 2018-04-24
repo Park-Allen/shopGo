@@ -7,6 +7,30 @@
  }
 .mg_bt20{margin-bottom: 20px;}
 .hide{display: none;}
+.a-upload {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+        *display: inline;
+        *zoom: 1
+    }
+    
+    .a-upload input {
+        position: absolute;
+        font-size: 100px;
+        right: 0;
+        top: 0;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        cursor: pointer
+    }
+    
+    .a-upload:hover {
+        color: #fff;
+        background: #eee;
+        border-color: #ccc;
+        text-decoration: none
+    }
 </style>
 <link rel="shortcut icon" href="favicon.ico">
 <link href="/favicon.ico" rel="SHORTCUT ICON" type="/image/ico">
@@ -43,21 +67,26 @@
             <div class="content-form-page">
               <div class="row">
                 <div class="col-md-7 col-sm-7">
-                  <form class="form-horizontal" role="form" enctype="multipart/form-data" method="post" action="{:url('user/uploads')}">
+                  <form class="form-horizontal" role="form" enctype="multipart/form-data" method="post" action="{:url('user/game_img')}">
+                    <input type="hidden" name="goods_id" value="{$Think.get.id?:''}">
                     <fieldset>
-                      <legend style="font-size:16px;">永恒之塔</legend>
+                      <legend style="font-size:16px;">上传图片</legend>
                         <div  class="col-md-12 col-xs-12 img_box">
                             
                         </div>  
-                        <div class="col-md-12 col-xs-12">
-                            <input type="file"  class="upfile"  name="image[]" multiple="true">    
+                        <div class="col-md-12 col-xs-12 mg_bt20" >
+                            <div class="a-upload btn btn-default ">
+                                <input type="file"  class="upfile "  name="image[]" multiple="true">  
+                                <img src="/static/imageUp/a11.png" style="width: 120px;height:120px;"> 
+                            </div>
                       	</div>
                     <div class="row">
                       <div class="col-lg-8 col-md-offset-4 padding-left-20 padding-top-20">
-                        <button type="submit" class="btn btn-primary">确认提交</button>
+                        <button type="button" class="btn btn-primary img_push">确认提交</button>
                         <a href="{:url('index/index')}"><button type="button" class="btn btn-default">取消</button></a>
                       </div>
                     </div>
+                    <input type="hidden" name="goods_id" value="{$Think.get.id}">
                   </form>
                 </div>
                 <div class="col-md-4 col-sm-4 pull-right">
@@ -72,18 +101,39 @@
           </div>
           <!-- END CONTENT -->
         </div>
+
         <!-- END SIDEBAR & CONTENT -->
       </div>
     </div>
         {/block}
         {block name="js"}
         <script type="text/javascript">
+            var defaults = {
+                    fileType         : ["jpg","png","bmp","jpeg"],   // 上传文件的类型
+                    fileSize         : 1024 * 1024 * 10                  // 上传文件的大小 10M
+                };
+            var imgArr = [];
             $('.upfile').change(function(){
-                var imgUrl = getObjectURL(this.files[0]) ;
-                $img_tmp=get_img_tmp();
-                $img_tmp=$img_tmp.replace(/{img}/g,imgUrl);
-                $('.img_box').append($img_tmp);
-
+                //遍历得到的图片文件
+                var fileList = this.files; //获取的图片文件
+                var numUp = $('.img_box').find(".up-section").length;
+                var totalNum = numUp + fileList.length;  //总的数量
+                if(fileList.length > 5 || totalNum > 5 ){
+                    alert("上传图片数目不可以超过5个，请重新选择");   
+                }else if(numUp < 5){
+                    fileList = validateUp(fileList);
+                    for(var i = 0;i<fileList.length;i++){
+                        imgUrl   = getObjectURL(fileList[i]) ;
+                        $img_tmp = get_img_tmp();
+                        $img_tmp = $img_tmp.replace(/{img}/g,imgUrl);
+                        imgArr.push(imgUrl);
+                        $('.img_box').append($img_tmp);
+                    }
+                        // imgUrl   = getObjectURL(this.files[0]) ;
+                        // $img_tmp = get_img_tmp();
+                        // $img_tmp = $img_tmp.replace(/{img}/g,imgUrl);
+                        // $('.img_box').append($img_tmp);
+                }
             })
                
             function getObjectURL(file){
@@ -99,8 +149,58 @@
             }
 
             function get_img_tmp(){
-                return '<img src="{img}" class="col-md-3 mg_bt20">';   
+                return '<img src="{img}" class="col-md-3 mg_bt20 up-section">';   
             }
+          
+
+            function validateUp(files){
+                var arrFiles = [];//替换的文件数组
+                for(var i = 0, file; file = files[i]; i++){
+                    //获取文件上传的后缀名
+                    var newStr = file.name.split("").reverse().join("");
+                    if(newStr.split(".")[0] != null){
+                            var type = newStr.split(".")[0].split("").reverse().join("");
+                            console.log(type);
+                            if(jQuery.inArray(type, defaults.fileType) > -1){
+                                // 类型符合，可以上传
+                                if (file.size >= defaults.fileSize) {
+                                    alert(file.size);
+                                    alert('您这个"'+ file.name +'"文件大小过大');    
+                                } else {
+                                    // 在这里需要判断当前所有文件中
+                                    arrFiles.push(file);    
+                                }
+                            }else{
+                                alert('您这个"'+ file.name +'"上传类型不符合');   
+                            }
+                        }else{
+                            alert('您这个"'+ file.name +'"没有类型, 无法识别');    
+                        }
+                }
+                return arrFiles;
+            }
+
+            $('.img_push').click(function(){
+                var fd = new FormData();
+                for (var i = 0; i < imgArr.length; i++) {
+                    fd.append('image', imgArr[i]);
+                }
+                $.ajax({
+                    type : 'POST',
+                    url : "",
+                    data : data,
+                    processData : false,
+                    contentType : false,
+                    dataType : 'json',
+                    success : function(data){
+                        
+                    },
+                    error : function(e) {
+                      
+                    }
+                });
+
+            })
         </script>
         {/block}
     <!-- END BODY -->

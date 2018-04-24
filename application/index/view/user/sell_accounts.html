@@ -44,35 +44,60 @@
                   <form class="form-horizontal" role="form" id="addForm">
                     <fieldset>
                       <legend style="font-size:16px;">永恒之塔</legend>
-                      <div class="form-group">
-                        <label for="firstname" class="col-lg-4 control-label">商品标题 <span class="require">*</span></label>
-                        <div class="col-lg-8">
-                          <input type="text" name="goods_title" class="form-control" id="firstname">
-                          <p class="sell-font">自动生成标题格式：<em style="color:#e6400c">【角色职业+绑定信息+等级+卖家填写的标题】</em></p>
+                        <div class="form-group">
+                            <label for="firstname" class="col-lg-4 control-label">商品标题 <span class="require">*</span></label>
+                            <div class="col-lg-8">
+                              <input type="text"  readonly="readonly" class="form-control" placeholder="标题自动生成-无需填写">
+                              <p class="sell-font">自动生成标题格式：<em style="color:#e6400c">【所在大区+角色种族+角色职业+等级+军衔】</em></p>
+                            </div>
                         </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="lastname" class="col-lg-4 control-label">所属种族 <span class="require">*</span></label>
-                        <div class="col-lg-8">
-                              <select class="form-control input-sm" name="goods_type">
-                                <option value="">请选择</option>
-                                <option value="1">天族</option>
-                                <option value="2">魔族</option>
-                              </select>
-                        </div>
-                      </div>
 
-                      <div class="form-group">
-                        <label for="email" class="col-lg-4 control-label">出售价格 <span class="require">*</span></label>
-                        <div class="col-lg-8">
-                          <input type="text" name="goods_price" class="form-control" id="email">
+                         <div class="form-group">
+                            <label for="lastname" class="col-lg-4 control-label">所在大区 <span class="require">*</span></label>
+                            <div class="col-lg-8">
+                                  <select class="form-control input-sm" name="goods_area">
+                                    <option value="">请选择</option>
+                                    <option value="1">傲视八星</option>
+                                    <option value="2">复仇之花</option>
+                                    <option value="3">决战之地</option>
+                                    <option value="4">异界之王</option>
+                                    <option value="5">谁与争锋</option>
+                                    <option value="6">提亚马特</option>
+                                    <option value="7">诸神传说</option>
+                                  </select>
+                            </div>
                         </div>
-                      </div>
+
+                        <div class="form-group">
+                            <label for="lastname" class="col-lg-4 control-label">所属种族 <span class="require">*</span></label>
+                            <div class="col-lg-8">
+                                  <select class="form-control input-sm" name="goods_type">
+                                    <option value="">请选择</option>
+                                    <option value="1">天族</option>
+                                    <option value="2">魔族</option>
+                                  </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="col-lg-4 control-label">角色军衔 <span class="require">*</span></label>
+                            <div class="col-lg-8">
+                              <input type="text" name="goods_rank" class="form-control" id="email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-lg-4 control-label">出售价格 <span class="require">*</span></label>
+                            <div class="col-lg-8">
+                              <input type="text" name="goods_price" class="form-control" id="email">
+                            </div>
+                        <em class="sell-font" style="color:#e6400c">元</em>
+                        </div>
                       <div class="form-group">
                         <label for="email" class="col-lg-4 control-label">角色等级 <span class="require">*</span></label>
                         <div class="col-lg-8">
-                          <input type="text" name="goods_level" class="form-control" id="email">
+                            <input type="text" name="goods_level" class="form-control" id="email">
                         </div>
+                        <em class="sell-font" style="color:#e6400c">级</em>
                       </div>
                       <div class="form-group">
                         <label for="lastname" class="col-lg-4 control-label">角色职业 <span class="require">*</span></label>
@@ -106,7 +131,7 @@
                       <div class="form-group">
                         <label for="email" class="col-lg-4 control-label">游戏角色名 <span class="require">*</span></label>
                         <div class="col-lg-8">
-                          <input type="text" class="form-control" name="goods_user">
+                          <input type="text" class="form-control" name="goods_nick_name" placeholder="可不填">
                         </div>
                       </div>
 
@@ -151,7 +176,7 @@
                   dataType:'json',
                   success:function(data){     
                      if(data.code==1){
-                          window.location.href="{:url('user/game_user')}";
+                          window.location.href="{:url('user/user_equipment')}?id="+data.goods_id;
                       }else{
                         alert(data.msg);
                       }
